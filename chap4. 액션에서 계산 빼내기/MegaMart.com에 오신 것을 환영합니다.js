@@ -61,18 +61,6 @@
 {
   const shopping_cart = []; // A
   let shopping_cart_total = 0; // A
-  // 계산 함수
-  function calc_total(carts) {
-    // 암묵적 입력 -> 명시적 입력으로 바꾸기
-    // 암묵적 출력 -> 출력으로 바꾸기
-    return carts.reduce((total, item) => total + item.price, 0);
-  }
-  // C
-  function add_item(cart, name, price) {
-    const new_cart = cart.slice(); // 복사본을 만들어 지역변수에 할당
-    new_cart.push({ name, price });
-    return new_cart;
-  }
   // A
   function add_item_to_cart(name, price) {
     shopping_cart = add_item(shopping_cart, name, price);
@@ -88,6 +76,33 @@
     update_tax_dom();
   }
 
+  // C
+  function add_item(cart, name, price) {
+    const new_cart = cart.slice(); // 복사본을 만들어 지역변수에 할당
+    new_cart.push({ name, price });
+    return new_cart;
+  }
+  function update_shipping_icons() {
+    // A
+    var buy_buttons = get_buy_buttons_dom();
+    for (let i = 0; i < buy_buttons.length; i++) {
+      const button = buy_buttons[i];
+      const item = button.item;
+      if (is_free_delivery(shopping_cart_total, item.price))
+        button.show_free_shipping_icon();
+      else button.hide_free_shipping_icon();
+    }
+  }
+  // 무료 배송 여부
+  function is_free_delivery(total, price) {
+    return price + amount >= 20;
+  }
+  // 계산 함수
+  function calc_total(carts) {
+    // 암묵적 입력 -> 명시적 입력으로 바꾸기
+    // 암묵적 출력 -> 출력으로 바꾸기
+    return carts.reduce((total, item) => total + item.price, 0);
+  }
   // 연습 문제
   // 결제 부서에서 우리가 만든 세금 게산 코드를 쓰려고 한다. 하지만, DOM과 묶여있어
   // 바로 사용하기 어렵다. update_tax_dom() 함수에서 세금을 계산하는 부분을 추출하라.
