@@ -82,6 +82,7 @@
     new_cart.push({ name, price });
     return new_cart;
   }
+
   function update_shipping_icons() {
     // A
     var buy_buttons = get_buy_buttons_dom();

@@ -9,6 +9,7 @@ const goods = [
 // legacy code
 {
   const shopping_cart = []; // A
+  let shopping_cart_total = 0; // A
   // C
   function add_item(cart, name, price) {
     const new_cart = cart.slice(); // 복사본을 만들어 지역변수에 할당
@@ -42,16 +43,25 @@ const goods = [
     return calc_total(cart) >= 20;
   }
 
-  function update_shipping_icons() {
+  function update_shipping_icons(cart) {
     // A
     var buy_buttons = get_buy_buttons_dom();
     for (let i = 0; i < buy_buttons.length; i++) {
       const button = buy_buttons[i];
       const item = button.item;
-      const new_cart = add_item(shopping_cart, item.name, item.price);
+      const new_cart = add_item(cart, item.name, item.price);
 
       if (is_free_delivery(new_cart)) button.show_free_shipping_icon();
       else button.hide_free_shipping_icon();
     }
+  }
+
+  function calc_cart_total() {
+    // 1.서브루틴 추출
+    const shopping_cart_total = calc_total(shopping_cart);
+
+    // set_cart_total_dom();
+    update_shipping_icons(shopping_cart_total);
+    // update_tax_dom();
   }
 }
