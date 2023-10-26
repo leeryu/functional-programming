@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 var shopping_cart = [
-  { name: 'barrel수영모자' },
-  { name: 'barrel수영바지' },
-  { name: 'nike swim 고글' },
+  { name: "barrel수영모자" },
+  { name: "barrel수영바지" },
+  { name: "nike swim 고글" },
 ]; // 전역변수는 액션
 // copy-on-write 적용 전
 {
@@ -33,7 +33,7 @@ function remove_item_by_predicate(cart, predicate) {
 
 const new_cart = remove_item_by_predicate(
   shopping_cart,
-  (item) => item.name === 'barrel수영바지',
+  (item) => item.name === "barrel수영바지"
 );
 
 Array.prototype.empty = function () {
@@ -46,3 +46,21 @@ Array.prototype.empty = function () {
 function removeItems(array, idx, count) {
   return array.slice(idx, count);
 }
+
+function pop(array) {
+  return array.slice().pop(); // copy-on-writ
+}
+
+function drop_last(array) {
+  return array.slice(0, -1);
+}
+
+function push(array, item) {
+  const array_copy = array.concat([item]);
+  const array_copy1 = array.concat(item);
+  const array_copy2 = [...array, item];
+
+  return [...array, item];
+}
+
+console.log(push([1, 2, 3], 4));
