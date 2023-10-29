@@ -100,6 +100,20 @@
     };
   }
 
-  var increment = makeAdder(1);
-  console.log(increment(10));
+  // var increment = makeAdder(1);
+  // console.log(increment(10));
+}
+
+{
+  function forEach(array, action) {
+    for (let i = 0; i < array.length; i++) {
+      action(array[i]);
+    }
+  }
+
+  var emails = ["sexyuck@gmail.com", "leeeryu@gmail.com"];
+
+  forEach(emails, function (email) {
+    console.log(email);
+  });
 }
