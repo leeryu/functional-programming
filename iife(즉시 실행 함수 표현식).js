@@ -43,6 +43,20 @@
     };
   })();
 
-  console.log(visitCounter.increment()); // 1
-  console.log(visitCounter.increment());
+  // console.log(visitCounter.increment()); // 1
+  // console.log(visitCounter.increment());
+}
+
+{
+  function a() {
+    for (var i = 0; i < 3; i++) {
+      (function (i) {
+        setTimeout(function () {
+          console.log(i);
+        }, 500);
+      })(i);
+    }
+  }
+
+  a();
 }

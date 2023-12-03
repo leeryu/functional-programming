@@ -1,0 +1,11 @@
+{
+  "name": "functional-programming",
+  "version": "1.0.0",
+  "description": "쏙쏙 들어오는 함수형 코딩",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
