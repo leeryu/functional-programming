@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function map(array, callback) {
   const result = [];
@@ -68,6 +68,13 @@ function reduce(array, action, start) {
   return result;
 }
 
+function update(object, key, modify) {
+  var value = object[key];
+  var newValue = modify(value);
+  var newObject = objectSet(object, key, newValue);
+  return newObject;
+}
+
 const functional = {
   map,
   pluck,
@@ -77,6 +84,7 @@ const functional = {
   concat,
   objectSet,
   reduce,
+  update,
 };
 
 export { functional };
